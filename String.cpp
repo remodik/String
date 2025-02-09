@@ -78,7 +78,6 @@ String String::substr(const size_t start, const size_t len) const {
     for (size_t i = 0; i < alen; ++i) {
         subStr.data[i] = data[start + i];
     }
-
     return subStr;
 }
 
@@ -94,6 +93,31 @@ void String::resize(const size_t _size) {
     }
 }
 
-void String::print() const {
-    cout << data << endl;
+void String::print() const { cout << data << endl; }
+
+String String::operator+(const String& self) const {
+    const size_t _size = size + self.size;
+    String result;
+    result.resize(_size);
+
+    strcpy(result.data, data);
+    strcpy(result.data + size, self.data);
+
+    result.size = _size;
+    return result;
 }
+
+bool String::operator==(const String& self) const {
+    if (size != self.size) { return false; }
+    return strcmp(data, self.data) == 0;
+}
+
+bool String::operator!=(const String& self) const { return !(*this == self); }
+
+bool String::operator<(const String& self) const { return strcmp(data, self.data) < 0; }
+
+bool String::operator<=(const String& self) const { return strcmp(data, self.data) <= 0; }
+
+bool String::operator>(const String& self) const { return strcmp(data, self.data) > 0; }
+
+bool String::operator>=(const String& self) const { return strcmp(data, self.data) >= 0; }

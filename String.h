@@ -24,6 +24,14 @@ public:
     void concatenate(const String& self);
     String substr(size_t start, size_t len) const;
     void print() const;
+
+    String operator+(const String& self) const;
+    bool operator==(const String& self) const;
+    bool operator!=(const String& self) const;
+    bool operator<(const String& self) const;
+    bool operator<=(const String& self) const;
+    bool operator>(const String& self) const;
+    bool operator>=(const String& self) const;
 };
 
 #endif
